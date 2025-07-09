@@ -1,9 +1,10 @@
 # techtrix-toolbox
 Mini frontend tools like Password strength, Color generator, QR generator, Countdown,Form validator,and more.
 
-Live Preview
+Live Preview https://latha0520.github.io/techtrix-toolbox/
 
 Features
+
 1.Stylish and responsive UI using Bootstrap 5
 2.Light/Dark mode toggle
 3.Mobile-friendly layouts
