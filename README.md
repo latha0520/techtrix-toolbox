@@ -3,26 +3,27 @@ Mini frontend tools like Password strength, Color generator, QR generator, Count
 
 Live Preview https://latha0520.github.io/techtrix-toolbox/
 
-Features
+Features---
 
 1.Stylish and responsive UI using Bootstrap 5
 2.Light/Dark mode toggle
 3.Mobile-friendly layouts
 4.Modular structure: each tool has its own HTML page
 
-Tools Included
+Tools Included---
 
-> Calculator	A basic four-operator calculator with dark mode
-> Event Reminder	Add, delete, and auto-notify events with countdown
-> Form Validator	Smart form with email/password checks and strength meter
-> Password Strength Checker	Checks and categorizes password strength live
-> QR Code Generator	Generates scannable QR codes from any text or URL
-> Color Generator	Creates random HEX/RGB colors with copy buttons
-> Countdown Timer	Set any timer with live countdown
-> Form Validator	Input form with real-time feedback
+> Calculator:A basic four-operator calculator with dark mode
+> Event Reminder:	Add, delete, and auto-notify events with countdown
+> Form Validator:	Smart form with email/password checks and strength meter
+> Password Strength Checker:Checks and categorizes password strength live
+> QR Code Generator:	Generates scannable QR codes from any text or URL
+> Color Generator:	Creates random HEX/RGB colors with copy buttons
+> Countdown Timer:	Set any timer with live countdown
+> Form Validator:Input form with real-time feedback
 
 
-Tech Stack
+Tech Stack----
+
 HTML5
 CSS
 Bootstrap 
@@ -32,7 +33,8 @@ Optional: Animate.css, WOW.js
 
 
 
-Credits
+Credits----
+
 Icons: Bootstrap Icons
 UI powered by: Bootstrap
 Date Picker: Flatpickr
