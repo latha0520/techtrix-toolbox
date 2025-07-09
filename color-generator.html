@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Generator - TechTrix Toolbox</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rajdhani:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        background-image: url("bg.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .card-box {
+        background: rgba(255, 255, 255, 0.404);
+        padding: 2.5rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 640px;
+        text-align: center;
+        position: relative;
+        transition: background 0.4s ease, color 0.4s ease;
+      }
+
+      .dark-mode {
+        background-color: #212529 !important;
+        color: #ffffff;
+      }
+
+      .color-palette {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 1rem;
+        margin: 2rem 0 1rem;
+      }
+
+      .color-box {
+        height: 100px;
+        border-radius: 12px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-weight: bold;
+        font-size: 0.85rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s, color 0.3s;
+      }
+
+      .color-box:hover {
+        transform: scale(1.05);
+      }
+
+      .btn-refresh {
+        margin-top: 1rem;
+      }
+
+      .btn-darkmode {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        font-size: 0.85rem;
+      }
+
+      .back-icon {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        font-size: 1.3rem;
+        color: #333;
+        text-decoration: none;
+      }
+
+      .back-icon:hover {
+        color: #e4e6e9;
+      }
+      .dark-mode .back-icon {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        font-size: 1.3rem;
+        color: #ffffff;
+        text-decoration: none;
+      }
+      .footer-note {
+        font-size: 0.85rem;
+        color: #777;
+        margin-top: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card-box position-relative" id="colorCard">
+      <!-- Back icon -->
+      <a href="index.html" class="back-icon" title="Go Back">
+        <i class="bi bi-arrow-left-circle-fill"></i>
+      </a>
+
+      <!-- Dark mode toggle -->
+      <button
+        class="btn btn-sm btn-outline btn-darkmode"
+        onclick="toggleDarkMode()"
+      >
+        🌓Dark Mode
+      </button>
+
+      <i class="bi bi-palette-fill text-primary fs-1 mb-3"></i>
+      <h2>Color Generator</h2>
+      <p>
+        Click on any color to copy its HEX code.<br />Use refresh to explore
+        more vibrant combos.
+      </p>
+
+      <div class="color-palette" id="paletteContainer">
+        <!-- Color blocks generated here -->
+      </div>
+
+      <button class="btn btn-primary btn-refresh" onclick="generatePalette()">
+        <i class="bi bi-arrow-clockwise me-1"></i> Generate New Palette
+      </button>
+
+      <div class="footer-note">
+        All colors are randomly generated using hex codes.
+      </div>
+    </div>
+
+    <script>
+      const paletteContainer = document.getElementById("paletteContainer");
+      const colorCard = document.getElementById("colorCard");
+
+      function getRandomHex() {
+        const hex = Math.floor(Math.random() * 16777215).toString(16);
+        return "#" + hex.padStart(6, "0");
+      }
+
+      function generatePalette() {
+        paletteContainer.innerHTML = "";
+        for (let i = 0; i < 5; i++) {
+          const color = getRandomHex();
+          const box = document.createElement("div");
+          box.className = "color-box";
+          box.style.backgroundColor = color;
+          box.innerText = color.toUpperCase();
+          box.onclick = () => {
+            navigator.clipboard.writeText(color);
+            alert(`${color.toUpperCase()} copied to clipboard!`);
+          };
+
+          // Adjust text color for light backgrounds
+          const rgb = parseInt(color.substring(1), 16); // remove #
+          const r = (rgb >> 16) & 0xff,
+            g = (rgb >> 8) & 0xff,
+            b = rgb & 0xff;
+          const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+          if (brightness > 150) {
+            box.style.color = "#000";
+          }
+
+          paletteContainer.appendChild(box);
+        }
+      }
+
+      function toggleDarkMode() {
+        colorCard.classList.toggle("dark-mode");
+      }
+
+      window.addEventListener("DOMContentLoaded", generatePalette);
+    </script>
+  </body>
+</html>

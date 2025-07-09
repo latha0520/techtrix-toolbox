@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechTrix Toolbox</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!-- WOW.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rajdhani:wght@400;500&display=swap');
+
+      .brand-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+        font-weight: 700;
+        background: linear-gradient(to right, #00ffe7, #a471f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shineText 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes shineText {
+        0% { opacity: 0.6; }
+        100% { opacity: 1; }
+      }
+
+      :root {
+        --bg: linear-gradient(to right, #f0f2f5, #e4ecf4);
+        --card-bg: #f7f1f177;
+        --text: #f7f2f2;
+      }
+
+      [data-theme="dark"] {
+        --bg: #121212;
+        --card-bg: #1e1e1e;
+        --text: #f5f0f0ef;
+      }
+
+      body {
+        font-family: 'Rajdhani', sans-serif;
+        background-image: url("bg.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        color: var(--text);
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+
+      .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #007bff;
+        color: #fff;
+        border-radius: 50%;
+        padding: 0.5rem 0.6rem;
+        font-size: 1.5rem;
+        display: none;
+        z-index: 1000;
+        transition: opacity 0.3s;
+      }
+
+      .scroll-to-top:hover {
+        background: #0056b3;
+      }
+
+      .loader {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .loader.hidden {
+        display: none;
+      }
+
+      .navbar-custom {
+        background-color: rgba(243, 240, 240, 0);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        color: white;
+      }
+
+      .navbar-brand i {
+        margin-right: 8px;
+        color: #f9fafc;
+        animation: rotateIcon 3s linear infinite;
+      }
+
+      @keyframes rotateIcon {
+        0% { transform: rotate(0); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .theme-toggle {
+        cursor: pointer;
+        transition: transform 0.4s;
+      }
+
+      .theme-toggle:hover {
+        transform: rotate(15deg);
+      }
+
+      .intro-section {
+        color: white;
+        text-align: center;
+        padding: 3rem 1rem;
+        backdrop-filter: blur(3px);
+        animation: fadeInBlur 2s ease forwards;
+      }
+
+      @keyframes fadeInBlur {
+        0% { opacity: 0; filter: blur(10px); }
+        100% { opacity: 1; filter: blur(0); }
+      }
+
+      .tool-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 2rem 1rem;
+      }
+
+      .tool-card {
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.5s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tool-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+        transition: left 0.4s;
+      }
+
+      .tool-card:hover::after {
+        left: 100%;
+      }
+
+      .tool-card:hover {
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      }
+
+      .tool-card i {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+        transition: transform 0.5s;
+      }
+
+      .tool-card:hover i {
+        transform: scale(1.2);
+      }
+
+      .htmlfooter {
+        text-align: center;
+        padding: 1rem;
+        background: #f8f9fa00;
+        margin-top: 3rem;
+        font-size: 0.9rem;
+        color: #777;
+        animation: fadeInUp 2s ease forwards;
+      }
+
+      .help-box {
+        position:fixed;
+        bottom: 80px;
+        right: 20px;
+        background: #ffffffdd;
+        color: #111;
+        padding: 10px 16px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1000;
+        animation: fadeInUp 2s ease forwards;
+        backdrop-filter: blur(6px);
+        cursor: pointer;
+      }
+      .default-font {
+  font-family: system-ui, sans-serif !important;
+  font-weight: normal;
+}
+
+      
+    </style>
+  </head>
+  <body data-theme="light">
+    <!-- Loader -->
+    <div class="loader" id="loader">
+      <div class="spinner-border text-primary" role="status"></div>
+    </div>
+
+    <!-- Help Floating Box -->
+    <div class="help-box" data-bs-toggle="modal" data-bs-target="#helpModal">
+      💡 Need help? Click here
+    </div>
+
+    <!-- Scroll to Top -->
+    <a href="#" class="scroll-to-top" id="scrollTopBtn"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-custom">
+      <div class="container-fluid d-flex align-items-center justify-content-between px-4 py-2">
+        <div class="navbar-brand d-flex align-items-center">
+          <i class="bi bi-cpu"></i>
+          <span class="brand-title ms-2 wow animate__animated animate__fadeInLeft" data-wow-duration="1.9s">TechTrix Toolbox</span>
+        </div>
+        <i class="bi bi-moon-stars fs-5 theme-toggle wow animate__animated animate__fadeInRight" data-wow-duration="2s" onclick="toggleTheme()"></i>
+      </div>
+    </nav>
+
+    <!-- Intro Section -->
+    <section class="intro-section">
+      <h1 class="mb-3">🚀Welcome to TechTrix Toolbox</h1>
+      <p class="lead">Explore mini frontend tools built. Interactive. Responsive. Practical.</p>
+    </section>
+
+    <!-- Tool Grid -->
+    <section class="container tool-grid">
+      <div class="tool-card wow animate__animated animate__fadeInUp" data-wow-delay="0.8s">
+        <i class="bi bi-shield-lock text-primary"></i>
+        <h5>Password Strength</h5>
+        <p>Instantly check if your password is strong enough.</p>
+        <a href="password-checker.html" class="btn btn-outline-light btn-sm">Try it</a>
+      </div>
+
+     
+       <div class="tool-card wow animate__animated animate__fadeInUp" data-wow-delay="0.8s">
+        <i class="bi bi-shield-lock text-primary"></i>
+        <h5>Color Generator</h5>
+        <p>Vibrant color combos at your fingertips.</p>
+        <a href="color-generator.html" class="btn btn-outline-light btn-sm"
+          >Try it</a
+        >
+      </div>
+
+     <div class="tool-card wow animate__animated animate__fadeInUp" data-wow-delay="0.8s">
+        <i class="bi bi-shield-lock text-primary"></i>
+        <h5>Text Converter</h5>
+        <p>Uppercase, lowercase & more text tools.</p>
+        <a href="text-utils.html" class="btn btn-outline-light btn-sm"
+          >Try it</a
+        >
+      </div>
+
+    <div class="tool-card wow animate__animated animate__fadeInUp" data-wow-delay="0.8s">
+        <i class="bi bi-shield-lock text-primary"></i>
+        <h5>Countdown Timer</h5>
+        <p>Start a countdown to your favorite event.</p>
+        <a href="countdown.html" class="btn btn-outline-light btn-sm"
+          >Try it</a
+        >
+      </div>
+
+     <div class="tool-card wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+        <i class="bi bi-shield-lock text-primary"></i>
+        <h5>QR Generator</h5>
+        <p>Create QR codes for links & text instantly.</p>
+        <a href="qr code.html" class="btn btn-outline-light btn-sm">Try it</a>
+      </div>
+
+      <div class="tool-card wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+        <i class="bi bi-shield-lock text-primary"></i>
+        <h5>Form Validator</h5>
+        <p>Check required fields and proper formats.</p>
+        <a href="validator.html" class="btn btn-outline-light btn-sm"
+          >Try it</a
+        >
+      </div>
+
+     <div class="tool-card wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+        <i class="bi bi-shield-lock text-primary"></i>
+        <h5>Event Reminder</h5>
+        <p>Set and get alerts for upcoming events.</p>
+        <a href="eventreminder.html" class="btn btn-outline-light btn-sm"
+          >Try it</a
+        >
+      </div>
+
+      <div class="tool-card wow animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+        <i class="bi bi-shield-lock text-primary"></i>
+        <h5>Simple Calculator</h5>
+        <p>Perform basic arithmetic operations with ease.</p>
+        <a href="calculator.html" class="btn btn-outline-light btn-sm"
+          >Try it</a>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="htmlfooter ">
+      HTML • CSS • JS • Bootstrap
+    </footer>
+
+    <!-- Help Modal -->
+    <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="helpModalLabel">Need Help?</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-dark default-font">
+            <p>🛠Browse each tool to see live output.</p>
+            <p>📧For issues or suggestions,contact: <br><strong>techtrix.support@gmail.com</strong></p>
+      
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      new WOW().init();
+
+      window.onload = () => {
+        setTimeout(() => {
+          document.getElementById("loader").classList.add("hidden");
+        }, 1200);
+      };
+
+      function toggleTheme() {
+        const theme = document.body.getAttribute("data-theme");
+        const newTheme = theme === "light" ? "dark" : "light";
+        document.body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const saved = localStorage.getItem("theme");
+        if (saved) document.body.setAttribute("data-theme", saved);
+      });
+
+      const scrollBtn = document.getElementById("scrollTopBtn");
+      window.onscroll = () => {
+        scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+      };
+      scrollBtn.onclick = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+    </script>
+  </body>
+</html>
